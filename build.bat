@@ -1,0 +1,1 @@
+mvnw clean package -Dmaven.repo.local=.\repo
