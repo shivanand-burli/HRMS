@@ -1,1 +1,1 @@
-mvnw clean package -Dmaven.repo.local=.\repo
+mvnw clean package -Dquarkus.package.type=uber-jar -Dmaven.repo.local=.\repo
