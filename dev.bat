@@ -1,1 +1,1 @@
-mvnw clean -DskipTests -Dmaven.repo.local=.\repo quarkus:dev > dev.log 2>&1
+mvnw clean -DskipTests -Dmaven.repo.local=.\deps quarkus:dev > dev.log 2>&1
