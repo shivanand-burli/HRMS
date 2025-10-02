@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . /app
 
 # Build native binary
-RUN ./mvnw package -Pnative -Dquarkus.native.container-build=true
+RUN mvnw package -Pnative -Dquarkus.native.container-build=true
 
 # Stage 2: Minimal runtime
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.7
