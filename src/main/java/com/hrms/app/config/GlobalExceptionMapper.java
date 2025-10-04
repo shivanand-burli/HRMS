@@ -48,13 +48,36 @@ public class GlobalExceptionMapper implements ExceptionMapper<Exception> {
                                         .build();
                 }
 
+                // Method Not Found
+                if (ex instanceof jakarta.ws.rs.NotFoundException nf) {
+                        errorResponse = new ErrorResponse(
+                                        Response.Status.NOT_FOUND.getStatusCode(),
+                                        "Method Not Found",
+                                        Collections.singletonList(nf.getMessage()));
+                        return Response.status(Response.Status.NOT_FOUND)
+                                        .type(MediaType.APPLICATION_JSON)
+                                        .entity(errorResponse)
+                                        .build();
+                }
+
+                if (ex instanceof jakarta.ws.rs.NotAllowedException na) {
+                        errorResponse = new ErrorResponse(
+                                        Response.Status.METHOD_NOT_ALLOWED.getStatusCode(),
+                                        "Method Not Allowed",
+                                        Collections.singletonList(na.getMessage()));
+                        return Response.status(Response.Status.METHOD_NOT_ALLOWED)
+                                        .type(MediaType.APPLICATION_JSON)
+                                        .entity(errorResponse)
+                                        .build();
+                }
+
                 // Default: log and return 500
-                BaseLogger.LOG.error("API processing failed.", ex);
+                BaseLogger.LOG.error("Processing Failed.", ex);
 
                 errorResponse = new ErrorResponse(
                                 Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
                                 "Internal server error",
-                                Collections.singletonList("API processing failed"));
+                                Collections.singletonList("Processing Failed"));
 
                 return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                                 .type(MediaType.APPLICATION_JSON)

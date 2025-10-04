@@ -70,7 +70,7 @@ public class EmployeeResource {
         return Response.ok().build();
     }
 
-    @GET
+    @POST
     @Path("/refresh")
     @PermitAll
     public Response refreshToken(@HeaderParam("Authorization") String refreshToken) {
@@ -87,13 +87,13 @@ public class EmployeeResource {
         return emp;
     }
 
-    @GET
+    @POST
     @Path("/checkin")
     public Attendance checkIn() {
         return attendenceService.checkIn();
     }
 
-    @GET
+    @POST
     @Path("/checkout")
     public Attendance checkOut() {
         return attendenceService.checkOut();

@@ -80,7 +80,7 @@ public class CompanyResource {
         return Response.ok().build();
     }
 
-    @GET
+    @POST
     @Path("/refresh")
     @PermitAll
     public Response refreshToken(@HeaderParam("Authorization") String refreshToken) {
@@ -131,7 +131,7 @@ public class CompanyResource {
         return attendenceService.getAllAttendenceByCompany(date);
     }
 
-    @GET
+    @POST
     @Path("/attendence/approve/{empId}")
     public Attendance approveAttendence(@PathParam("empId") String empId) {
         return attendenceService.approveRequest(empId);
