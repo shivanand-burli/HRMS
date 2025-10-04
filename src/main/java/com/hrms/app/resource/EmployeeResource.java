@@ -30,7 +30,6 @@ import jakarta.ws.rs.core.Response;
 @Path("/v1/emp")
 @ApplicationScoped
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 @Transactional
 public class EmployeeResource {
 
@@ -49,6 +48,7 @@ public class EmployeeResource {
     @POST
     @Path("/login")
     @PermitAll
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response login(@Valid LoginReq loginReq) {
         final Employee emp = employeeRepo.findById(loginReq.getEmail())
                 .orElseThrow(() -> new ValidationError(Constants.EMP_NT_FOUND));
@@ -61,6 +61,7 @@ public class EmployeeResource {
     @POST
     @Path("/password/reset")
     @PermitAll
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response resetPassword(@Valid ResetPasswordReq req) {
         final Employee emp = employeeRepo.findById(req.getEmail())
                 .orElseThrow(() -> new ValidationError(Constants.CMP_NT_FOUND));

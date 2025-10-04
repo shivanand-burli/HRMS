@@ -25,7 +25,6 @@ import jakarta.ws.rs.core.MediaType;
 @Path("/v1/support")
 @ApplicationScoped
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 @Transactional
 public class SupportResource {
 
@@ -37,6 +36,7 @@ public class SupportResource {
 
     @POST
     @Path("/create/cmp")
+    @Consumes(MediaType.APPLICATION_JSON)
     public Company createCompany(@Valid Company cmp) {
         if (companyRepo.findById(cmp.getEmail()).isPresent()) {
             throw new ValidationError(Constants.CMP_EXISTS);
